@@ -2,10 +2,12 @@ package main
 
 import (
   "fmt"
+  "net/http"
 )
 
 func main()  {
-  fmt.Println("Revised")
-  fmt.Println("Another revision")
-  fmt.Println("Hello World!")
+  http.Handle("/", http.FileServer(http.Dir(".")))
+
+  fmt.Println("Server running on http://localhost:8080")
+  http.ListenAndServe(":8080", nil)
 }
